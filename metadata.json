@@ -1,0 +1,8 @@
+{
+  "name": "Remix Rail Connect - Modern Train Ticket Booking",
+  "description": "Book high-speed train tickets seamlessly across popular national and international railway routes with instant e-tickets and live seat availability.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

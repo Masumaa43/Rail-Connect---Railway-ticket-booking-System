@@ -1,0 +1,178 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile authenticated with Google Sign-In via Firebase Auth",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "email"]
+    },
+    "BookingTicket": {
+      "title": "BookingTicket",
+      "description": "A railway reservation ticket created and managed by the authenticated user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "pnr": { "type": "string", "maxLength": 32 },
+        "trainNumber": { "type": "string", "maxLength": 32 },
+        "trainName": { "type": "string", "maxLength": 128 },
+        "fromStation": { "type": "string", "maxLength": 128 },
+        "fromCode": { "type": "string", "maxLength": 16 },
+        "toStation": { "type": "string", "maxLength": 128 },
+        "toCode": { "type": "string", "maxLength": 16 },
+        "departureTime": { "type": "string", "maxLength": 16 },
+        "arrivalTime": { "type": "string", "maxLength": 16 },
+        "travelDate": { "type": "string", "maxLength": 32 },
+        "passengerName": { "type": "string", "maxLength": 128 },
+        "passengerEmail": { "type": "string", "maxLength": 256 },
+        "seatClass": { "type": "string", "maxLength": 64 },
+        "coach": { "type": "string", "maxLength": 64 },
+        "seatNumber": { "type": "string", "maxLength": 64 },
+        "totalPaid": { "type": "number" },
+        "status": { "type": "string", "maxLength": 64 },
+        "platform": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "pnr", "trainNumber", "fromStation", "toStation", "travelDate", "passengerName", "seatClass", "seatNumber", "totalPaid", "status"]
+    },
+    "PnrSearchHistory": {
+      "title": "PnrSearchHistory",
+      "description": "Historical record of checked 10-digit Indian Railways PNRs with timeline status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "pnr": { "type": "string", "maxLength": 32 },
+        "trainNumber": { "type": "string", "maxLength": 32 },
+        "trainName": { "type": "string", "maxLength": 128 },
+        "fromStation": { "type": "string", "maxLength": 128 },
+        "toStation": { "type": "string", "maxLength": 128 },
+        "journeyDate": { "type": "string", "maxLength": 64 },
+        "bookingStatus": { "type": "string", "maxLength": 64 },
+        "coach": { "type": "string", "maxLength": 32 },
+        "berth": { "type": "string", "maxLength": 32 },
+        "classType": { "type": "string", "maxLength": 64 },
+        "chartStatus": { "type": "string", "maxLength": 128 },
+        "currentSpeed": { "type": "string", "maxLength": 32 },
+        "currentStation": { "type": "string", "maxLength": 128 },
+        "eta": { "type": "string", "maxLength": 64 },
+        "checkedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "pnr", "trainNumber", "bookingStatus", "checkedAt"]
+    },
+    "FoodOrder": {
+      "title": "FoodOrder",
+      "description": "IRCTC e-catering Food on Train order placed for seat/berth delivery",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "pnr": { "type": "string", "maxLength": 32 },
+        "trainNumber": { "type": "string", "maxLength": 32 },
+        "trainName": { "type": "string", "maxLength": 128 },
+        "coach": { "type": "string", "maxLength": 32 },
+        "seat": { "type": "string", "maxLength": 32 },
+        "deliveryStation": { "type": "string", "maxLength": 128 },
+        "itemName": { "type": "string", "maxLength": 128 },
+        "quantity": { "type": "number" },
+        "totalPrice": { "type": "number" },
+        "paymentMethod": { "type": "string", "maxLength": 64 },
+        "orderStatus": { "type": "string", "maxLength": 64 },
+        "orderedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "pnr", "trainNumber", "coach", "seat", "deliveryStation", "itemName", "totalPrice", "orderStatus"]
+    },
+    "EmergencySos": {
+      "title": "EmergencySos",
+      "description": "Real-time RailMadad 139 / RPF Official emergency assistance dispatch",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "pnr": { "type": "string", "maxLength": 32 },
+        "trainNumber": { "type": "string", "maxLength": 32 },
+        "coach": { "type": "string", "maxLength": 32 },
+        "seat": { "type": "string", "maxLength": 32 },
+        "emergencyType": { "type": "string", "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 512 },
+        "phone": { "type": "string", "maxLength": 32 },
+        "status": { "type": "string", "maxLength": 64 },
+        "officialsAssigned": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "trainNumber", "emergencyType", "description", "status"]
+    },
+    "BookmarkedPlace": {
+      "title": "BookmarkedPlace",
+      "description": "Scenic places, attractions and landmarks bookmarked by the user along Indian railway corridors",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "placeId": { "type": "string", "maxLength": 64 },
+        "placeName": { "type": "string", "maxLength": 128 },
+        "cityName": { "type": "string", "maxLength": 128 },
+        "nearestStation": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "imageUrl": { "type": "string", "maxLength": 512 },
+        "description": { "type": "string", "maxLength": 512 },
+        "mapsUrl": { "type": "string", "maxLength": 512 },
+        "bookmarkedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "placeId", "placeName", "cityName", "nearestStation"]
+    },
+    "WalletTransaction": {
+      "title": "WalletTransaction",
+      "description": "RailPay virtual payment ledger transactions and wallet topups",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "maxLength": 16 },
+        "amount": { "type": "number" },
+        "description": { "type": "string", "maxLength": 256 },
+        "referenceId": { "type": "string", "maxLength": 64 },
+        "category": { "type": "string", "maxLength": 64 },
+        "balanceAfter": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "type", "amount", "description", "category", "balanceAfter"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection storing individual user data"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "BookingTicket",
+      "description": "Railway tickets collection owned by individual users"
+    },
+    "/pnr_history/{historyId}": {
+      "schema": "PnrSearchHistory",
+      "description": "User checked PNR inquiries with timeline states"
+    },
+    "/food_orders/{orderId}": {
+      "schema": "FoodOrder",
+      "description": "Food on train e-catering delivery orders"
+    },
+    "/emergency_sos/{sosId}": {
+      "schema": "EmergencySos",
+      "description": "Live emergency assistance requests routed to Railway Protection Force and 139 Control"
+    },
+    "/bookmarked_places/{bookmarkId}": {
+      "schema": "BookmarkedPlace",
+      "description": "Bookmarked scenic places and landmarks along railway corridors"
+    },
+    "/wallet_transactions/{transactionId}": {
+      "schema": "WalletTransaction",
+      "description": "RailPay virtual payment ledger transactions and topups"
+    }
+  }
+}

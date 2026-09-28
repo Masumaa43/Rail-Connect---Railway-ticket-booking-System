@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User Profile
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) 
+        && incoming().id == userId
+        && incoming().email is string
+        && incoming().email.size() <= 256;
+      allow update: if isOwner(userId) 
+        && incoming().id == userId;
+      allow delete: if false;
+    }
+
+    // Railway Bookings: Users can manage their own bookings
+    match /bookings/{bookingId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(bookingId)
+        && incoming().userId == request.auth.uid
+        && incoming().pnr is string && incoming().pnr.size() <= 32
+        && incoming().trainNumber is string && incoming().trainNumber.size() <= 32
+        && incoming().fromStation is string && incoming().fromStation.size() <= 128
+        && incoming().toStation is string && incoming().toStation.size() <= 128
+        && incoming().totalPaid is number && incoming().totalPaid >= 0;
+      allow update: if isSignedIn()
+        && existing().userId == request.auth.uid
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+
+    // PNR Search History
+    match /pnr_history/{historyId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(historyId)
+        && incoming().userId == request.auth.uid
+        && incoming().pnr is string && incoming().pnr.size() <= 32
+        && incoming().trainNumber is string && incoming().trainNumber.size() <= 32;
+      allow update: if isSignedIn()
+        && existing().userId == request.auth.uid
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+
+    // Food on Train Orders (e-Catering)
+    match /food_orders/{orderId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(orderId)
+        && incoming().userId == request.auth.uid
+        && incoming().pnr is string && incoming().pnr.size() <= 32
+        && incoming().trainNumber is string && incoming().trainNumber.size() <= 32
+        && incoming().totalPrice is number && incoming().totalPrice >= 0;
+      allow update: if isSignedIn()
+        && existing().userId == request.auth.uid
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+
+    // Emergency SOS (RailMadad 139)
+    match /emergency_sos/{sosId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(sosId)
+        && incoming().userId == request.auth.uid
+        && incoming().emergencyType is string && incoming().emergencyType.size() <= 64
+        && incoming().description is string && incoming().description.size() <= 512;
+      allow update: if isSignedIn()
+        && existing().userId == request.auth.uid
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+
+    // Bookmarked Places & Scenic Attractions
+    match /bookmarked_places/{bookmarkId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(bookmarkId)
+        && incoming().userId == request.auth.uid
+        && incoming().placeId is string && incoming().placeId.size() <= 64
+        && incoming().placeName is string && incoming().placeName.size() <= 128;
+      allow update: if isSignedIn()
+        && existing().userId == request.auth.uid
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+
+    // RailPay Virtual Wallet Transactions
+    match /wallet_transactions/{transactionId} {
+      allow get: if isSignedIn() && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn()
+        && isValidId(transactionId)
+        && incoming().userId == request.auth.uid
+        && incoming().amount is number && incoming().amount > 0
+        && incoming().type is string && incoming().type.size() <= 16;
+      allow update: if false;
+      allow delete: if isSignedIn()
+        && existing().userId == request.auth.uid;
+    }
+  }
+}
