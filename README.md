@@ -1,5 +1,8 @@
 # RailConnect — Modern Indian Railways Web Application
-RailConnect is a responsive React-based web application designed to simplify train ticket search, virtual seat picking, e-catering orders, PNR tracking, emergency assistance, and station navigation for Indian Railways passengers.Features
+RailConnect is a responsive React-based web application designed to simplify train ticket search, virtual seat picking, e-catering orders, PNR tracking, emergency assistance, and station navigation for Indian Railways passengers.
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/7f1ec337-ab39-47aa-87ba-8a96d017a8ad" />
+
 
 #FEATURES:-
 1.Intelligent Train Search: Search train schedules across stations, travel dates, and quotas (General, Tatkal, Ladies, Senior Citizen).
