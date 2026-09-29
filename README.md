@@ -15,10 +15,21 @@ RailConnect is a responsive React-based web application designed to simplify tra
 8.Firebase Authentication & Database: Google Sign-In with Firestore real-time persistence for bookings, meal orders, and saved destinations.
 
 ###Tech Stack:-
-Frontend: React 18, TypeScript, Vite
+Frontend:-
+(React + TypeScript), Vite- Rapid local Development
 
-Styling: Tailwind CSS, Lucide React Icons
-
-Backend & Database: Firebase Auth, Firestore
-
+Styling: Tailwind CSS-(FrameWork)
+Backend: Node.js & Express
+Database: Firebase Auth, Firestore
 Location Services: Google Maps Grounding (@google/genai)
+
+#DSA Concepts used:-
+1. Dijkstra/A* Search - Shortest Path Finding
+2. Weighted Graph(Adjacency List) - Station Route Network and Distance Between Junctions
+3. Hash Tables - for seat maps(avability)
+4. Prefix trees - Real Time station search input as user types
+5. 2D Matrix and Queue - Coach layout, grid matrix for tatkal waitlisting
+6. Sorting Algorithm - ( quick and merge sort)
+7. Greedy Algorithm - for allocating seat booking
+
+
