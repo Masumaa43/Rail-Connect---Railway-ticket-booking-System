@@ -81,9 +81,13 @@ export const PopularRoutes: React.FC<PopularRoutesProps> = ({
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    target.style.display = 'none';
-                    if (target.parentElement) {
-                      target.parentElement.classList.add('bg-gradient-to-br', 'from-slate-800', 'to-slate-900', 'flex', 'items-center', 'justify-center');
+                    if (!target.src.endsWith('/images/vande_bharat_express.jpg')) {
+                      target.src = '/images/vande_bharat_express.jpg';
+                    } else {
+                      target.style.display = 'none';
+                      if (target.parentElement) {
+                        target.parentElement.classList.add('bg-gradient-to-br', 'from-slate-800', 'to-slate-900', 'flex', 'items-center', 'justify-center');
+                      }
                     }
                   }}
                 />

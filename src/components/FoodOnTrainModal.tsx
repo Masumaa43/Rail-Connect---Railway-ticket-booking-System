@@ -239,6 +239,9 @@ export const FoodOnTrainModal: React.FC<FoodOnTrainModalProps> = ({
                         alt={item.name}
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/indian_rail_thali.jpg';
+                        }}
                       />
                       <span className={`absolute top-2 left-2 text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm ${
                         item.veg ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white'

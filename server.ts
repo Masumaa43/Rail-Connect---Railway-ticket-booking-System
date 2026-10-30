@@ -427,6 +427,10 @@ app.post('/api/pnr-inquiry', (req, res) => {
   });
 });
 
+// Serve public/images and src/assets/images explicitly in both dev and production so published apps always display images
+app.use('/images', express.static(path.resolve(__dirname, 'public/images')));
+app.use('/src/assets/images', express.static(path.resolve(__dirname, 'src/assets/images')));
+
 // Setup Vite middleware in dev or static files in production
 async function startServer() {
   const isProd = process.env.NODE_ENV === 'production';
@@ -440,6 +444,7 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     app.use(express.static(path.resolve(__dirname, 'dist')));
+    app.use(express.static(path.resolve(__dirname, 'public')));
     app.get('*', (_req, res) => {
       res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
     });

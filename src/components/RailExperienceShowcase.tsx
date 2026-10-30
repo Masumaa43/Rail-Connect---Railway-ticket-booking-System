@@ -91,11 +91,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-fadeIn">
             {/* Split Images Grid */}
             <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group bg-slate-900">
                 <img
-                  src="/src/assets/images/vande_bharat_train_1790504178153.jpg"
+                  src="/images/vande_bharat_express.jpg"
                   alt="Vande Bharat semi-high speed train running on Indian Railways track"
+                  referrerPolicy="no-referrer"
                   className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = '/src/assets/images/vande_bharat_express_1793352021993.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 text-white">
@@ -106,11 +110,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
                 </div>
               </div>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group bg-slate-900">
                 <img
-                  src="/src/assets/images/vande_bharat_interior_1790506633999.jpg"
+                  src="/images/vande_bharat_cabin.jpg"
                   alt="Luxury Executive Class interior of Vande Bharat Express with rotatable seats"
+                  referrerPolicy="no-referrer"
                   className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = '/src/assets/images/vande_bharat_cabin_1793352023383.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 text-white">
@@ -174,11 +182,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
         {/* TAB 2: ROYAL DINING & E-CATERING */}
         {activeTab === 'dining' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-fadeIn">
-            <div className="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-xl group">
+            <div className="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-xl group bg-slate-900">
               <img
-                src="/src/assets/images/indian_railway_food_1790506654544.jpg"
+                src="/images/indian_rail_thali.jpg"
                 alt="Delicious Indian Railways Maharaja royal thali served on train table"
+                referrerPolicy="no-referrer"
                 className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                onError={(e) => {
+                  e.currentTarget.src = '/src/assets/images/indian_rail_thali_1793352026531.jpg';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white flex items-end justify-between">
@@ -236,11 +248,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
         {activeTab === 'scenic' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-fadeIn">
             <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group bg-slate-900">
                 <img
-                  src="/src/assets/images/himalayan_express_train_1790506670145.jpg"
+                  src="/images/himalayan_kashmir_rail.jpg"
                   alt="Scenic Himalayan Express train crossing mountain viaduct"
+                  referrerPolicy="no-referrer"
                   className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = '/src/assets/images/himalayan_kashmir_rail_1793352025177.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 text-white">
@@ -251,11 +267,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
                 </div>
               </div>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group bg-slate-900">
                 <img
-                  src="/src/assets/images/konkan_scenic_rail_1790504207098.jpg"
+                  src="/images/konkan_coastal_rail.jpg"
                   alt="Konkan Railway viaduct through Western Ghats waterfalls"
+                  referrerPolicy="no-referrer"
                   className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = '/src/assets/images/konkan_coastal_rail_1793352024002.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 text-white">
@@ -307,11 +327,15 @@ export const RailExperienceShowcase: React.FC<RailExperienceShowcaseProps> = ({
         {/* TAB 4: HERITAGE & MODERN TERMINALS */}
         {activeTab === 'terminals' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-fadeIn">
-            <div className="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-xl group">
+            <div className="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-xl group bg-slate-900">
               <img
-                src="/src/assets/images/mumbai_csmt_train_1790504192421.jpg"
+                src="/images/mumbai_csmt_heritage.jpg"
                 alt="Chhatrapati Shivaji Maharaj Terminus CSMT Mumbai iconic railway station"
+                referrerPolicy="no-referrer"
                 className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                onError={(e) => {
+                  e.currentTarget.src = '/src/assets/images/mumbai_csmt_heritage_1793352026785.jpg';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">

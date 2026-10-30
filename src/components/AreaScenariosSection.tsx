@@ -296,7 +296,11 @@ export const AreaScenariosSection: React.FC<AreaScenariosSectionProps> = ({
                         <img
                           src={place.imageUrl}
                           alt={place.name}
+                          referrerPolicy="no-referrer"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          onError={(e) => {
+                            e.currentTarget.src = '/images/konkan_coastal_rail.jpg';
+                          }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
@@ -431,7 +435,11 @@ export const AreaScenariosSection: React.FC<AreaScenariosSectionProps> = ({
                       <img
                         src={bkm.imageUrl}
                         alt={bkm.placeName}
+                        referrerPolicy="no-referrer"
                         className="w-20 h-20 rounded-xl object-cover shrink-0 border border-slate-800"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/konkan_coastal_rail.jpg';
+                        }}
                       />
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-1">

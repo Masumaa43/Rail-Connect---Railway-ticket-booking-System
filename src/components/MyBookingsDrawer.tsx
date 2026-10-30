@@ -730,7 +730,11 @@ export const MyBookingsDrawer: React.FC<MyBookingsDrawerProps> = ({
                         <img
                           src={bkm.imageUrl}
                           alt={bkm.placeName}
+                          referrerPolicy="no-referrer"
                           className="w-20 h-20 rounded-xl object-cover shrink-0 border border-slate-100 shadow-2xs"
+                          onError={(e) => {
+                            e.currentTarget.src = '/images/konkan_coastal_rail.jpg';
+                          }}
                         />
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-1">
